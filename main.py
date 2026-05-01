@@ -117,10 +117,11 @@ class TeaSteeperApp(tk.Tk):
 
         self.canvas.create_text(
             WINDOW_SIZE // 2,
-            84,
-            text="What tea would you like to brew today?",
-            fill="#382313",
-            font=self.font(24, "bold"),
+            130,
+            text="What tea would you \nlike to brew today?",
+            fill="#808000",
+            font=self.font(30, "bold"),
+            justify="center"
         )
 
         button_positions = (130, 320, 510)
@@ -128,7 +129,7 @@ class TeaSteeperApp(tk.Tk):
             tag = self.tea_tag(tea)
             self.canvas.create_image(
                 x,
-                330,
+                400,
                 image=self.images[tea.button_file],
                 anchor="center",
                 tags=(tag,),
@@ -197,8 +198,8 @@ class TeaSteeperApp(tk.Tk):
         self.reset_canvas()
         self.draw_full_sprite(liquid_file)
         self.draw_full_sprite("done.png")
-        self.draw_timer_text("Time to drink!")
-        self.draw_back_button("Brew another?")
+        self.draw_done_text("Time to drink!")
+        self.draw_back_button("Brew another one?")
 
     def draw_full_sprite(self, filename: str) -> None:
         self.canvas.create_image(0, 0, image=self.images[filename], anchor="nw")
@@ -209,31 +210,30 @@ class TeaSteeperApp(tk.Tk):
             WINDOW_SIZE // 2,
             WINDOW_SIZE - 56,
             text=label,
-            fill="#382313",
-            font=self.font(34, "bold"),
+            fill="#524632",
+            font=self.font(30, "bold"),
+        )
+        
+    def draw_done_text(self, text: str | None = None) -> None:
+        label = text or self.format_time(self.remaining_seconds)
+        self.canvas.create_text(
+            WINDOW_SIZE // 2,
+            120,
+            text=label,
+            fill="#524632",
+            font=self.font(30, "bold"),
         )
 
-    def draw_back_button(self, text: str = "Menu") -> None:
-        button_bg = self.canvas.create_rectangle(
-            20,
-            20,
-            180 if text == "Menu" else 260,
-            68,
-            fill= None,
-            outline="",
-            width=0,
-            tags=("menu_button",),
-        )
+    def draw_back_button(self, text: str = "Home") -> None:
         button_text = self.canvas.create_text(
-            42,
-            44,
+            15,
+            20,
             text=text,
-            fill="#382313",
+            fill="#524632",
             font=self.font(16, "bold"),
             anchor="w",
             tags=("menu_button",),
         )
-        self.bind_clickable(button_bg, lambda _event: self.show_menu())
         self.bind_clickable(button_text, lambda _event: self.show_menu())
 
     @staticmethod
