@@ -14,7 +14,13 @@ body {
   margin: 0;
   display: grid;
   place-items: center;
-  background: #f7edc7;
+  background-color: #f7edc7;
+  /* repeat the swirl pattern across the whole page so there are no plain side bands */
+  background-image: url("sprites/background.png");
+  background-size: var(--app-size) var(--app-size);
+  background-position: center;
+  background-repeat: repeat;
+  image-rendering: pixelated;
   font-family: "Space Mono", monospace;
 }
 
@@ -23,9 +29,6 @@ body {
   width: var(--app-size);
   aspect-ratio: 1;
   overflow: hidden;
-  background-image: url("sprites/background.png");
-  background-size: 100% 100%;
-  image-rendering: pixelated;
 }
 
 .screen {
@@ -57,15 +60,16 @@ h1 {
 
 .tea-option {
   position: absolute;
-  top: 62.5%;
-  width: 30.9375%;
-  height: 35.9375%;
+  top: 61%;
+  width: 29%;
+  aspect-ratio: 2080 / 2420; /* visible part of the 2560px sprite */
   padding: 0;
   border: 0;
   background-color: transparent;
   background-repeat: no-repeat;
-  background-size: 122.7273% 105.6522%;
-  background-position: left -7.5758% top -3.4783%;
+  /* scale the sprite so its drawn area (160..2240 x 80..2500) fills the button */
+  background-size: 123.0769% 105.7851%;
+  background-position: 33.3333% 57.1429%;
   cursor: pointer;
   image-rendering: pixelated;
   transform: translate(-50%, -50%);
@@ -78,7 +82,7 @@ h1 {
 }
 
 .tea-option[data-tea="black"] {
-  left: 20.3125%;
+  left: 17.5%;
   background-image: url("sprites/btn_black.png");
 }
 
@@ -88,7 +92,7 @@ h1 {
 }
 
 .tea-option[data-tea="herbal"] {
-  left: 79.6875%;
+  left: 82.5%;
   background-image: url("sprites/btn_herbal.png");
 }
 
