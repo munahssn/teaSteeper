@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tea Steeper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app" aria-label="Tea Steeper">
+      <section class="screen screen-menu" id="menu-screen">
+        <h1>What tea would you<br>like to brew today?</h1>
+        <div class="tea-options" aria-label="Tea options"></div>
+      </section>
+
+      <section class="screen screen-brew hidden" id="brew-screen">
+        <button class="nav-button" id="menu-button" type="button">Home</button>
+        <p class="done-message hidden" id="done-message">Time to drink!</p>
+
+        <div class="scene" aria-live="polite">
+          <img class="scene-layer" id="liquid-layer" alt="">
+          <img class="scene-layer" id="mug-layer" src="sprites/mug_empty.png" alt="">
+          <img class="scene-layer" id="steam-layer" src="sprites/steam_1.png" alt="">
+        </div>
+
+        <p class="timer" id="timer">0:00</p>
+      </section>
+    </main>
+  </body>
+</html>
